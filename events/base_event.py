@@ -1,0 +1,28 @@
+from abc import ABC, abstractmethod
+from datetime import datetime, timedelta
+from model.task import TaskInfo
+from model.enums import EventCode
+from core.simulation import SimulationEngine
+
+class Event(ABC):
+    event_count = 0
+
+    def __init__(self, event_info: TaskInfo, location_point_id: int, event_code: EventCode, event_time: datetime):
+        self.event_info = event_info
+        self.location_point_id = location_point_id
+        self.event_code = event_code
+        self.event_time = event_time
+        Event.event_count += 1
+        self.order = Event.event_count
+
+    def __eq__(self, other):
+        return self.event_time == other.event_time and self.order == other.order
+    
+    def __lt__(self, other):
+        if self.event_time != other.event_time:
+            return self.event_time < other.event_time
+        return self.order < other.order
+
+    @abstractmethod
+    def make_event(self, simulation: SimulationEngine):
+        pass

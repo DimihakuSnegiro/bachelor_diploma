@@ -1,0 +1,7 @@
+PySide6
+matplotlib
+plotly
+numpy
+scipy
+pandas
+pytest
