@@ -1,5 +1,5 @@
 from datetime import datetime
-from simulation_settings import SimulationConfig
+from .simulation_settings import SimulationConfig
 from typing import List
 from utils.generate_time import generate_time
 from events.base_event import Event
@@ -15,7 +15,6 @@ class SimulationEngine:
         self.end = settings.end
         self.intensity = settings.intensity
         self.stream_distribution_id = settings.stream_distribution_id
-        self.stream_expected_value = settings.stream_expected_value
         self.stream_variance = settings.stream_variance
         self.sensors = settings.sensors
         self.points = settings.points
@@ -35,7 +34,7 @@ class SimulationEngine:
 
     def run_simulation(self):
             current_time = self.start
-            for group_id, (object_start, object_end) in self.groups:
+            for group_id, (object_start, object_end) in self.groups.items():
                 object_id = object_start
                 while object_id <= object_end:
                     current_time = self.get_next_object_time(current_time)
@@ -50,7 +49,7 @@ class SimulationEngine:
                         event_info = task_info,
                         location_point_id = None,
                         event_code = EventCode.APPEARANCE,
-                        event_time = self.event_time
+                        event_time = current_time
                     )
                     self.add_event(new_event)
                     object_id += 1

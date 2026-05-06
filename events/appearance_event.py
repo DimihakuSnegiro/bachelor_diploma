@@ -1,8 +1,8 @@
-from base_event import Event
+from .base_event import Event
 from model.enums import EventCode
 from core.simulation import SimulationEngine
 from model.task import TaskInfo
-from event_factory import EventFactory
+from .event_factory import EventFactory
 
 class AppearanceEvent(Event):
     def make_event(self, simulation: SimulationEngine):

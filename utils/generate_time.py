@@ -1,11 +1,7 @@
 import numpy as np
 from datetime import timedelta
 
-def generate_time(self):
-        distribution_id = self.distribution_id
-        expected_value = self.expected_value
-        variance = self.variance
-        processing_time = None
+def generate_time(distribution_id: int, expected_value: float, variance: float):
         match distribution_id:
             case 1:  # Детерминированное
                 processing_time = expected_value

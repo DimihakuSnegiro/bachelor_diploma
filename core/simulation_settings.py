@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Dict, List, Tuple
-from model import ProcessingPoint
+from model.processing_point import ProcessingPoint
 
 @dataclass
 class SimulationConfig:
@@ -9,7 +9,6 @@ class SimulationConfig:
     end: datetime
     intensity: float
     stream_distribution_id: int
-    stream_expected_value: float  
     stream_variance: float
     sensors: Dict[int, Dict]
     points: Dict[int, ProcessingPoint]

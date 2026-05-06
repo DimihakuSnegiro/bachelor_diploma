@@ -2,7 +2,7 @@ import numpy as np
 from datetime import timedelta
 from collections import deque
 from typing import Deque, Optional
-from task import TaskInfo
+from .task import TaskInfo
 
 class ProcessingPoint:
     def __init__(self, distribution_id: int, expected_value: float, variance: float, channels: int):

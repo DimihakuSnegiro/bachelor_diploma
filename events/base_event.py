@@ -1,8 +1,11 @@
 from abc import ABC, abstractmethod
-from datetime import datetime, timedelta
+from datetime import datetime
 from model.task import TaskInfo
 from model.enums import EventCode
-from core.simulation import SimulationEngine
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from core.simulation import SimulationEngine
 
 class Event(ABC):
     event_count = 0
@@ -24,5 +27,5 @@ class Event(ABC):
         return self.order < other.order
 
     @abstractmethod
-    def make_event(self, simulation: SimulationEngine):
+    def make_event(self, simulation: 'SimulationEngine'):
         pass
