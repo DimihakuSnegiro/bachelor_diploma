@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS messages(
     source_id INT,
     location_point_id INT,
     action_id INT,
-    relevance_time TIMESTAMP,
     action_time TIMESTAMP
 );

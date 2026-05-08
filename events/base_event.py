@@ -26,6 +26,17 @@ class Event(ABC):
             return self.event_time < other.event_time
         return self.order < other.order
 
+    def to_tuple(self):
+        return (
+            self.event_info.group_id,
+            self.event_info.object_id,
+            self.event_info.detector_id,
+            self.event_info.source_id,
+            self.location_point_id,
+            self.event_code.value,
+            self.event_time
+        )
+
     @abstractmethod
     def make_event(self, simulation: 'SimulationEngine'):
         pass

@@ -6,11 +6,27 @@ from events.base_event import Event
 from model.task import TaskInfo
 from model.enums import EventCode
 from events.event_factory import EventFactory
+from db.add_events import add_events
 import heapq
 
+class SimulationHistory:
+    def __init__(self, batch_size = 50_000):
+        self.batch_size = batch_size
+        self.event_log: List[tuple] = []
+
+    def add_message(self, event: Event):
+        self.event_log.append(event.to_tuple())
+        if len(self.event_log) >= self.batch_size:
+            self.flush()
+
+    def flush(self):
+        add_events(self.event_log)
+        self.event_log = []
+
 class SimulationEngine:
-    def __init__(self, settings: SimulationConfig):
+    def __init__(self, settings: SimulationConfig, event_history: SimulationHistory):
         self.events_queue: List[Event] = []
+        self.event_history = event_history
         self.start = settings.start
         self.end = settings.end
         self.intensity = settings.intensity
@@ -61,3 +77,5 @@ class SimulationEngine:
                     break
 
                 event.make_event(self)
+                self.event_history.add_message(event)
+            self.event_history.flush()

@@ -1,5 +1,5 @@
 from datetime import datetime
-from core.simulation import SimulationEngine
+from core.simulation import SimulationEngine, SimulationHistory
 from core.simulation_settings import SimulationConfig
 from model.processing_point import ProcessingPoint
 
@@ -40,5 +40,6 @@ simulation_config = SimulationConfig(
     groups = groups
 )
 
-engine = SimulationEngine(simulation_config)
+history = SimulationHistory()
+engine = SimulationEngine(simulation_config, history)
 engine.run_simulation()

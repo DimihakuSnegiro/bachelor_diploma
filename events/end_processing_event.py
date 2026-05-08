@@ -10,6 +10,7 @@ class EndProcessingEvent(Event):
         state = simulation.points[current_point]
         next_task = state.finish()
 
+        # достаём следующую информацию, которая стояла в очереди
         if next_task:
             new_event = EventFactory.create_event(
                 event_info = next_task,
@@ -18,6 +19,7 @@ class EndProcessingEvent(Event):
                 event_time = self.event_time
             )
             simulation.add_event(new_event)
+            simulation.event_history.add_message(new_event)
 
         next_points = simulation.paths.get(self.location_point_id, [])
         for point in next_points:
