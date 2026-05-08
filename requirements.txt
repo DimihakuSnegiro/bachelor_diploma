@@ -5,3 +5,8 @@ numpy
 scipy
 pandas
 pytest
+sqlalchemy
+psycopg
+alembic
+pydantic
+dotenv
