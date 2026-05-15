@@ -1,7 +1,9 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Dict, List, Tuple
+from typing import Dict, List
 from model.processing_point import ProcessingPoint
+from model.sensor import Sensor
+from model.group import Group
 
 @dataclass
 class SimulationConfig:
@@ -10,7 +12,7 @@ class SimulationConfig:
     intensity: float
     stream_distribution_id: int
     stream_variance: float
-    sensors: Dict[int, Dict]
+    sensors: Dict[int, Sensor]
     points: Dict[int, ProcessingPoint]
     paths: Dict[int, List[int]]
-    groups: Dict[int, Tuple[int, int]]
+    groups: Dict[int, Group]

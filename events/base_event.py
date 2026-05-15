@@ -26,6 +26,9 @@ class Event(ABC):
             return self.event_time < other.event_time
         return self.order < other.order
 
+    def get_location(self):
+        return self.location_point_id
+
     def to_tuple(self):
         return (
             self.event_info.group_id,

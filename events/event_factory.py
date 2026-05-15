@@ -22,9 +22,5 @@ class EventFactory:
         elif event_code == EventCode.DETECTION:
             from .detection_event import DetectionEvent
             return DetectionEvent(event_info, location_point_id, event_code, event_time)
-        
-        elif event_code == EventCode.APPEARANCE:
-            from .appearance_event import AppearanceEvent
-            return AppearanceEvent(event_info, location_point_id, event_code, event_time)
 
         raise ValueError(f"Unknown event code: {event_code}")
